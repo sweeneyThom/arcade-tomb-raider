@@ -1,0 +1,74 @@
+{
+    "image1": {
+        "data": "hwQIAAgAAAAAAAAAAAAAAHBHUpUARyQFcJdUkncAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "player"
+    },
+    "image2": {
+        "data": "hwQIAAgAAACZmYnLiIm8vInLy8u7vLy8mcvLy5mIvLyJmZjLiJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile9"
+    },
+    "image3": {
+        "data": "hwQIAAgAAACZmYnLiIm8vInLy8u7vLy8mcvLy5mIvLyJmZjLiJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile0"
+    },
+    "image4": {
+        "data": "hwQIAAgAAACZmYmYiImYuYmYibmZmZi4mZmZuJmIibmJmZi5iJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile8"
+    },
+    "image6": {
+        "data": "hwQIAAgAAACZmYmYiFmYWYlVhllZdlVWWVVVZZl0hVmJSZhJiJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile5"
+    },
+    "image7": {
+        "data": "hwQIAAgAAAAAAAAAsAAAALC7AACwu7sLsAAAALAAAACwAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile7"
+    },
+    "image8": {
+        "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJmIiYmJmZiZiJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile1"
+    },
+    "image9": {
+        "data": "hwQIAAgAAAAAAAAAAAAAAHBHUpUARyQFcJdUkncAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "player_right"
+    },
+    "image5": {
+        "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJmIiYmJmZiZiJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile"
+    },
+    "image11": {
+        "data": "hwQHAAcAAAAAmQAAkM0JANnMnACQzMwJycycAJDMCQAAmQAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "heart_full"
+    },
+    "image10": {
+        "data": "hwQHAAcAAAAAmQAAkJ0JAJnJmQCQnMkJyZnMCZCcmQAAmQAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "heart_empty"
+    },
+    "image12": {
+        "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJmIiYmJZ5aZiGZmmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile14"
+    },
+    "j@8Lkl9)l=hKwon[LiRv": {
+        "namespace": "myImages",
+        "id": "j@8Lkl9)l=hKwon[LiRv",
+        "mimeType": "application/mkcd-animation",
+        "data": "ZjQwMTA4MDAwODAwMDEwMDAwMDA3MDAwMDAwNzc3MDAwMDc3MDcwMDAwNDQwOTAwMDA0MjA0MDAwMDI1MDUwMDAwNTUwMjAwMDAwOTA5MDA=",
+        "displayName": "player_right_anim"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
