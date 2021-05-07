@@ -34,11 +34,6 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "myTile1"
     },
-    "image9": {
-        "data": "hwQIAAgAAAAAAAAAAAAAAHBHUpUARyQFcJdUkncAAAAAAAAAAAAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "player_right"
-    },
     "image5": {
         "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJmIiYmJmZiZiJmZmQ==",
         "mimeType": "image/x-mkcd-f4",
@@ -58,6 +53,46 @@
         "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJmIiYmJZ5aZiGZmmQ==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "myTile14"
+    },
+    "image9": {
+        "data": "hwQIAAgAAAAAAAAAAAAAAHBHUpUARyQFcJdUkncAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "player_right"
+    },
+    "Tn3t|cixc-+UpB": {
+        "data": "hwQIAAgAAADuAAAA3e4AAN3d7gDd3d3u3d3uAN3uAADuAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "spike_falling"
+    },
+    "image13": {
+        "data": "hwQIAAgAAAAAAAAAAAAAACAiIgIgAAIiICAiICAiICIAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile12"
+    },
+    "image14": {
+        "data": "hwQIAAgAAACZ3N2YyM3dndzc3d3c3c3d3d3d3d3d3dzZ3d2diN3dmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile17"
+    },
+    "image17": {
+        "data": "hwQIAAgAAAAAAAAAAEQAAKeXUpWnRyQFp5dUkgBEAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "player_item_get"
+    },
+    "image18": {
+        "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJmIiYmJmZiZiJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile2"
+    },
+    "image16": {
+        "data": "hwQHAAUAAAAACQAAkJYAAAAGAAAABgAAUFYAAFBWAAAFAAUA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "arrow_right"
+    },
+    "image15": {
+        "data": "hwQHAAUAAAAFAAUAUFYAAFBWAAAABgAAAAYAAJCWAAAACQAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "arrow_left"
     },
     "j@8Lkl9)l=hKwon[LiRv": {
         "namespace": "myImages",
