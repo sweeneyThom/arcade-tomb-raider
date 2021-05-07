@@ -204,12 +204,43 @@ d d d c d d d d
 . 5 5 . . 9 . 
 5 . . . . . . 
 `;
+            case "image19":
+            case "myTile22":return img`
+9 8 9 9 9 9 9 8 
+9 8 5 5 5 5 8 8 
+9 5 8 9 9 8 5 9 
+9 5 9 7 7 8 5 9 
+9 5 9 7 7 9 5 9 
+8 5 8 9 9 8 5 9 
+8 9 5 5 5 5 9 9 
+9 9 9 9 9 8 9 9 
+`;
         }
         return null;
     })
 
     helpers._registerFactory("animation", function(name: string) {
         switch(helpers.stringTrim(name)) {
+            case "player_left_anim":
+            case "F;h%jB^zl[P~{gIKNUH%":return [img`
+. . 7 . . . . . 
+. . 7 7 . 7 . . 
+. . . 7 7 7 . . 
+. . . 9 4 4 . . 
+. . . 4 4 2 . . 
+. . . 5 2 5 . . 
+. . . 2 5 5 . . 
+. . . 9 . 9 . . 
+`, img`
+. . . . . . . . 
+. . 7 . . . . . 
+. . 7 7 . 7 . . 
+. . . 7 7 7 . . 
+. . . 9 4 4 . . 
+. . . 4 4 2 . . 
+. . . 5 2 5 . . 
+. . . 9 . 9 . . 
+`];
             case "player_right_anim":
             case "j@8Lkl9)l=hKwon[LiRv":return [img`
 . . . . . 7 . . 
@@ -219,6 +250,15 @@ d d d c d d d d
 . . 2 4 4 . . . 
 . . 5 2 5 . . . 
 . . 5 5 2 . . . 
+. . 9 . 9 . . . 
+`, img`
+. . . . . . . . 
+. . . . . 7 . . 
+. . 7 . 7 7 . . 
+. . 7 7 7 . . . 
+. . 4 4 9 . . . 
+. . 2 4 4 . . . 
+. . 5 2 5 . . . 
 . . 9 . 9 . . . 
 `];
         }

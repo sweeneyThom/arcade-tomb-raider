@@ -86,23 +86,23 @@ function loadMap () {
     tiles.coverAllTiles(assets.tile`myTile12`, assets.tile`myTile`)
     for (let value of tiles.getTilesByType(assets.tile`myTile13`)) {
         gem = sprites.create(img`
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-        `, SpriteKind.Gem)
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Gem)
         tiles.placeOnTile(gem, value)
         animation.runImageAnimation(
         gem,
@@ -246,9 +246,9 @@ function loadMap () {
         }
     }
     if (collapseCracks) {
-        for (let value3 of tiles.getTilesByType(assets.tile`myTile16`)) {
-            tiles.setTileAt(value3, assets.tile`myTile`)
-            tiles.setWallAt(value3, false)
+        for (let value32 of tiles.getTilesByType(assets.tile`myTile19`)) {
+            tiles.setTileAt(value32, assets.tile`myTile`)
+            tiles.setWallAt(value32, false)
         }
     }
     if (enteringFrom == CollisionDirection.Right) {
@@ -284,10 +284,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Gem, function (sprite, otherSpri
     canMove = true
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    doAJump(thePlayer, jumpHeight)
     if (canMove) {
         if (thePlayer.isHittingTile(CollisionDirection.Bottom)) {
-        	
+            doAJump(thePlayer, jumpHeight)
         }
     }
 })
@@ -320,6 +319,9 @@ function takeDamage () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     takeDamage()
 })
+function gameOver (won: boolean) {
+	
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile8`, function (sprite, location) {
     tiles.setTileAt(location, assets.tile`myTile`)
     tileSprite = sprites.create(assets.image`myTile2`, SpriteKind.Spike)
@@ -444,17 +446,17 @@ let gem: Sprite = null
 let currentLocationRow = 0
 let currentLocationCol = 0
 let gemsFound: string[] = []
-let collapseCracks = false
 let canMove = false
 let timerRunning = false
 let GRAVITY = 0
 let jumpHeight = 0
-let bouldersFallen = false
-let isTimerOn = false
-let thePlayer: Sprite = null
-let str:string = null
-let timerColor:color = null
 let enteringFrom: CollisionDirection = null
+let timerColor:color = null
+let str:string = null
+let thePlayer: Sprite = null
+let isTimerOn = false
+let bouldersFallen = false
+let collapseCracks = false
 function addTimerEvent(seconds:number, event:() => void){
     control.onEvent(TIMER_EVENT_ID, seconds, event)
 }
@@ -464,7 +466,7 @@ jumpHeight = 25
 GRAVITY = 400
 timerRunning = true
 canMove = true
-collapseCracks = true
+collapseCracks = false
 let minutesLeft = 4
 let secondsLeft = 59
 thePlayer = sprites.create(assets.image`player`, SpriteKind.Player)
@@ -481,7 +483,7 @@ character.rule(Predicate.FacingRight)
 )
 character.loopFrames(
 thePlayer,
-[],
+assets.animation`player_left_anim`,
 500,
 character.rule(Predicate.FacingLeft)
 )
@@ -494,6 +496,7 @@ addTimerEvent(180, function(){
 tiles.setSmallTilemap(tilemap`level2`)
 tiles.placeOnTile(thePlayer, tiles.getTileLocation(4, 13))
 let passableTiles = [assets.tile`myTile1`, assets.tile`myTile2`, assets.tile`myTile3`]
+let grappling = false
 scene.createRenderable(5, function(target: Image, camera: scene.Camera) {
     for (let index = 0; index <= 4; index++) {
         if (index > life - 1) {
@@ -514,6 +517,11 @@ scene.createRenderable(5, function(target: Image, camera: scene.Camera) {
             timerColor = 7
         }
         target.print(minutesLeft + str + secondsLeft, 4, 11, timerColor, image.font8)
+    }
+
+    if(grappling){
+        let grappleTarget = tiles.getTilesByType(assets.tile`myTile22`)
+        if(true){}
     }
 })
 game.onUpdate(function () {
@@ -638,9 +646,9 @@ game.onUpdateInterval(1000, function () {
     }
 })
 game.onUpdateInterval(1500, function () {
-    for (let value32 of tiles.getTilesByType(assets.tile`myTile14`)) {
+    for (let value322 of tiles.getTilesByType(assets.tile`myTile14`)) {
         arrow = sprites.create(assets.image`arrow_right`, SpriteKind.Projectile)
-        tiles.placeOnTile(arrow, value32)
+        tiles.placeOnTile(arrow, value322)
         arrow.vx = -100
         arrow.setFlag(SpriteFlag.DestroyOnWall, true)
     }
