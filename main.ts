@@ -14,6 +14,17 @@ function initTimer () {
 function doAJump (sprite: Sprite, height: number) {
     sprite.vy = 0 - Math.sqrt(2 * (height * GRAVITY))
 }
+/**
+ * To-do:
+ * 
+ * - Fix room skips
+ * 
+ * - Add detail to maps
+ * 
+ * - Fix geists
+ * 
+ * - Hookshot
+ */
 function loadMap () {
     for (let sprite of sprites.allOfKind(SpriteKind.Crumbler)) {
         sprite.setKind(SpriteKind._TileSprite)
@@ -31,7 +42,7 @@ function loadMap () {
         } else if (currentLocationCol == 2) {
         	
         } else if (currentLocationCol == 3) {
-        	
+            tiles.setSmallTilemap(tilemap`level111`)
         } else if (currentLocationCol == 4) {
             tiles.setSmallTilemap(tilemap`level18`)
         } else if (currentLocationCol == 5) {
@@ -93,9 +104,9 @@ function loadMap () {
         } else if (currentLocationCol == 3) {
             tiles.setSmallTilemap(tilemap`level38`)
         } else if (currentLocationCol == 4) {
-        	
+            tiles.setSmallTilemap(tilemap`level107`)
         } else if (currentLocationCol == 5) {
-        	
+            tiles.setSmallTilemap(tilemap`level106`)
         } else if (currentLocationCol == 6) {
             tiles.setSmallTilemap(tilemap`level82`)
         } else if (currentLocationCol == 7) {
@@ -111,13 +122,13 @@ function loadMap () {
         } else if (currentLocationCol == 2) {
         	
         } else if (currentLocationCol == 3) {
-        	
+            tiles.setSmallTilemap(tilemap`level112`)
         } else if (currentLocationCol == 4) {
-        	
+            tiles.setSmallTilemap(tilemap`level110`)
         } else if (currentLocationCol == 5) {
-        	
+            tiles.setSmallTilemap(tilemap`level109`)
         } else if (currentLocationCol == 6) {
-        	
+            tiles.setSmallTilemap(tilemap`level108`)
         } else if (currentLocationCol == 7) {
             tiles.setSmallTilemap(tilemap`level81`)
         } else {
@@ -749,19 +760,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, 
 })
 let arrow2: Sprite = null
 let arrow: Sprite = null
-let targetSprite:Sprite = null
-let closestTarget:tiles.Location = null
-let shortestDistance:number = null
-let distances:number[] = null
-let targetList:Sprite[] = null
 let newCover: Sprite = null
 let bottomTile: tiles.Location = null
 let tileSprite: Sprite = null
 let skull: Sprite = null
 let fallingBlock: Sprite = null
 let boulder: Sprite = null
-let isHookshotActive = false
-let hasHookshot = true
 let gemsFound: string[] = []
 let foundString = ""
 let gem: Sprite = null
@@ -771,15 +775,23 @@ let canMove = false
 let timerRunning = false
 let GRAVITY = 0
 let jumpHeight = 0
-let collapseCracks = false
-let bouldersFallen = false
-let isTimerOn = false
-let thePlayer: Sprite = null
-let str:string = null
-let timerColor:color = null
-let enteringFrom: CollisionDirection = null
-let secondsLeft = 0
+let hasHookshot = false
 let minutesLeft = 0
+let secondsLeft = 0
+let enteringFrom: CollisionDirection = null
+let timerColor:color = null
+let str:string = null
+let thePlayer: Sprite = null
+let isTimerOn = false
+let bouldersFallen = false
+let collapseCracks = false
+let isHookshotActive = false
+let targetList = null
+let distances = null
+let shortestDistance = null
+let closestTarget = null
+let targetSprite = null
+hasHookshot = true
 let totalSeconds:number
 function addTimerEvent(seconds:number, event:() => void){
     control.onEvent(TIMER_EVENT_ID, seconds, event)
