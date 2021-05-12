@@ -104,6 +104,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "starting_screen"
     },
+    "image21": {
+        "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJlVVYlZmZiVWHmXlQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile26"
+    },
     "F;h%jB^zl[P~{gIKNUH%": {
         "namespace": "myImages",
         "id": "F;h%jB^zl[P~{gIKNUH%",
