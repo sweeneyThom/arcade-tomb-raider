@@ -109,6 +109,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "myTile26"
     },
+    "image22": {
+        "data": "hwQIAAgAAACZmYmYiImYmYmYiZmZmZiYmZmZmJlVVYlZmZiVWHmXlQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile3"
+    },
+    "image23": {
+        "data": "hwQIAAgAAABZeYeVWImYlYlVVZmZmZiYmZmZmJmIiYmJmZiZiJmZmQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myTile25"
+    },
     "F;h%jB^zl[P~{gIKNUH%": {
         "namespace": "myImages",
         "id": "F;h%jB^zl[P~{gIKNUH%",

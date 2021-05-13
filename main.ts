@@ -8,23 +8,23 @@ namespace SpriteKind {
     export const Ghost = SpriteKind.create()
     export const Target = SpriteKind.create()
 }
+/**
+ * To-do:
+ * 
+ * - Fix room skips
+ * 
+ * - Add recovery hearts
+ * 
+ * - Add detail to maps
+ * 
+ * - Hookshot
+ */
 function initTimer () {
     isTimerOn = true
 }
 function doAJump (sprite: Sprite, height: number) {
     sprite.vy = 0 - Math.sqrt(2 * (height * GRAVITY))
 }
-/**
- * To-do:
- * 
- * - Fix room skips
- * 
- * - Add detail to maps
- * 
- * - Fix geists
- * 
- * - Hookshot
- */
 function loadMap () {
     for (let sprite of sprites.allOfKind(SpriteKind.Crumbler)) {
         sprite.setKind(SpriteKind._TileSprite)
@@ -504,6 +504,8 @@ function makeSkellabones (col: number, row: number) {
         skull.setBounceOnWall(true)
         skull.setVelocity(randint(-100, 100), randint(-100, 100))
         tiles.placeOnTile(skull, tiles.getTileLocation(col, row))
+        skull.lifespan = 3000
+        doAJump(thePlayer, jumpHeight)
     }
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile8`, function (sprite, location) {
@@ -755,7 +757,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile23`, function (sprite, 
     gameOver(true)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile6`)
+    tiles.setTileAt(location, assets.tile`myTile32`)
     makeSkellabones(tiles.locationXY(location, tiles.XY.column), tiles.locationXY(location, tiles.XY.row))
 })
 let arrow2: Sprite = null
@@ -790,7 +792,7 @@ let targetList = null
 let distances = null
 let shortestDistance = null
 let closestTarget = null
-let targetSprite = null
+let targetSprite:Sprite = null
 hasHookshot = true
 let totalSeconds:number
 function addTimerEvent(seconds:number, event:() => void){
@@ -989,16 +991,18 @@ game.onUpdateInterval(1000, function () {
     }
 })
 game.onUpdateInterval(1500, function () {
-    for (let value322 of tiles.getTilesByType(assets.tile`myTile14`)) {
-        arrow = sprites.create(assets.image`arrow_right`, SpriteKind.Projectile)
-        tiles.placeOnTile(arrow, value322)
-        arrow.vx = -100
-        arrow.setFlag(SpriteFlag.DestroyOnWall, true)
-    }
-    for (let value42 of tiles.getTilesByType(assets.tile`myTile15`)) {
-        arrow2 = sprites.create(assets.image`arrow_left`, SpriteKind.Projectile)
-        tiles.placeOnTile(arrow2, value42)
-        arrow2.vx = 100
-        arrow2.setFlag(SpriteFlag.DestroyOnWall, true)
+    if(!isHookshotActive){
+        for (let value322 of tiles.getTilesByType(assets.tile`myTile14`)) {
+            arrow = sprites.create(assets.image`arrow_right`, SpriteKind.Projectile)
+            tiles.placeOnTile(arrow, value322)
+            arrow.vx = -100
+            arrow.setFlag(SpriteFlag.DestroyOnWall, true)
+        }
+        for (let value42 of tiles.getTilesByType(assets.tile`myTile15`)) {
+            arrow2 = sprites.create(assets.image`arrow_left`, SpriteKind.Projectile)
+            tiles.placeOnTile(arrow2, value42)
+            arrow2.vx = 100
+            arrow2.setFlag(SpriteFlag.DestroyOnWall, true)
+        }
     }
 })
