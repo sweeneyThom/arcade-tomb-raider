@@ -91,16 +91,6 @@ c b c b c b c 9
 8 9 9 8 8 9 9 9 
 9 9 9 9 9 8 9 9 
 `;
-            case "image11":
-            case "heart_full":return img`
-. . 9 . 9 . . 
-. 9 d 9 c 9 . 
-9 d c c c c 9 
-9 c c c c c 9 
-. 9 c c c 9 . 
-. . 9 c 9 . . 
-. . . 9 . . . 
-`;
             case "image10":
             case "heart_empty":return img`
 . . 9 . 9 . . 
@@ -370,6 +360,16 @@ b c b c b c b .
 8 9 5 9 9 8 9 9 
 5 5 9 8 8 9 9 9 
 9 9 9 9 9 8 9 9 
+`;
+            case "image11":
+            case "heart_full":return img`
+. . 9 . 9 . . 
+. 9 d 9 c 9 . 
+9 d c c c c 9 
+9 c c c c c 9 
+. 9 c c c 9 . 
+. . 9 c 9 . . 
+. . . 9 . . . 
 `;
         }
         return null;

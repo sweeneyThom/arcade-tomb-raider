@@ -6,19 +6,15 @@ namespace SpriteKind {
     export const ScreenCover = SpriteKind.create()
     export const Boulder = SpriteKind.create()
     export const Ghost = SpriteKind.create()
-    export const Target = SpriteKind.create()
+    export const Heart = SpriteKind.create()
 }
-/**
- * To-do:
- * 
- * - Fix room skips
- * 
- * - Add recovery hearts
- * 
- * - Add detail to maps
- * 
- * - Hookshot
- */
+// To-do:
+// 
+// - Fix room skips
+// 
+// - Add recovery hearts
+// 
+// - Add detail to maps
 function initTimer () {
     isTimerOn = true
 }
@@ -98,7 +94,7 @@ function loadMap () {
         if (currentLocationCol == 0) {
         	
         } else if (currentLocationCol == 1) {
-        	
+            tiles.setSmallTilemap(tilemap`level141`)
         } else if (currentLocationCol == 2) {
             tiles.setSmallTilemap(tilemap`level40`)
         } else if (currentLocationCol == 3) {
@@ -120,7 +116,7 @@ function loadMap () {
         } else if (currentLocationCol == 1) {
         	
         } else if (currentLocationCol == 2) {
-        	
+            tiles.setSmallTilemap(tilemap`level140`)
         } else if (currentLocationCol == 3) {
             tiles.setSmallTilemap(tilemap`level112`)
         } else if (currentLocationCol == 4) {
@@ -304,11 +300,31 @@ function loadMap () {
             tiles.destroySpritesOfKind(SpriteKind.Gem)
         }
     }
+    for (let value of tiles.getTilesByType(assets.tile`myTile34`)) {
+        heart = sprites.create(assets.image`heart_full`, SpriteKind.Heart)
+        animation.runMovementAnimation(
+        heart,
+        "l 0 -8, l 0 8",
+        2000,
+        true
+        )
+        tiles.placeOnTile(heart, value)
+        tiles.setTileAt(value, assets.tile`myTile`)
+    }
+    foundString = "" + currentLocationCol + "," + currentLocationRow
+    for (let value2 of heartsFound) {
+        if (value2 == foundString) {
+            tiles.destroySpritesOfKind(SpriteKind.Heart)
+        }
+    }
     if (bouldersFallen) {
         tiles.coverAllTiles(assets.tile`myTile12`, assets.tile`myTile17`)
         for (let value3 of tiles.getTilesByType(assets.tile`myTile12`)) {
             tiles.setWallAt(value3, true)
         }
+    }
+    if (hasHookshot) {
+        tiles.replaceAllTiles(assets.tile`myTile21`, assets.tile`myTile`)
     }
     if (collapseCracks) {
         for (let value32 of tiles.getTilesByType(assets.tile`myTile19`)) {
@@ -422,6 +438,13 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile9`, function (sprite, l
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Boulder, function (sprite, otherSprite) {
     gameOver(false)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Heart, function (sprite, otherSprite) {
+    heartsFound.push("" + currentLocationCol + "," + currentLocationRow)
+    if (life < 7) {
+        life += 1
+    }
+    otherSprite.destroy()
+})
 sprites.onDestroyed(SpriteKind.Spike, function (sprite) {
     tiles.setTileAt(tiles.locationOfSprite(sprite), assets.tile`myTile9`)
 })
@@ -450,6 +473,31 @@ function takeDamage () {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
     tiles.setTileAt(location, assets.tile`myTile`)
     hasHookshot = true
+    timerRunning = false
+    character.setCharacterAnimationsEnabled(thePlayer, false)
+    thePlayer.setImage(assets.image`player_item_get`)
+    canMove = false
+    hookshot = sprites.create(img`
+        . . . b . . . . 
+        . . b b b . . . 
+        . . 6 7 6 . . . 
+        . . 7 4 7 . . . 
+        . . 6 7 6 . . . 
+        . . 6 6 6 . . . 
+        . . 7 . 7 . . . 
+        . . 7 7 7 . . . 
+        `, SpriteKind.Food)
+    hookshot.bottom = thePlayer.top
+    story.startCutscene(function () {
+        story.printDialog("YOU FOUND THE HOOKSHOT!", 80, 20, 40, 120, 15, 10)
+        story.printDialog("PRESS 'B' TO AIM, THEN PRESS 'B' AGAIN TO PULL YOURSELF TO A TARGET.", 80, 20, 40, 120, 15, 10)
+        story.printDialog("IT WILL ONLY WORK IN SOME PLACES, THOUGH.", 80, 20, 40, 120, 15, 10)
+        hookshot.destroy()
+        character.setCharacterAnimationsEnabled(thePlayer, true)
+        thePlayer.setImage(assets.image`player_right`)
+        timerRunning = true
+        canMove = true
+    })
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     takeDamage()
@@ -766,34 +814,31 @@ let newCover: Sprite = null
 let bottomTile: tiles.Location = null
 let tileSprite: Sprite = null
 let skull: Sprite = null
+let hookshot: Sprite = null
 let fallingBlock: Sprite = null
 let boulder: Sprite = null
+let hasHookshot = false
+let heart: Sprite = null
 let gemsFound: string[] = []
 let foundString = ""
 let gem: Sprite = null
 let currentLocationRow = 0
 let currentLocationCol = 0
+let heartsFound: string[] = []
 let canMove = false
 let timerRunning = false
 let GRAVITY = 0
 let jumpHeight = 0
-let hasHookshot = false
-let minutesLeft = 0
-let secondsLeft = 0
-let enteringFrom: CollisionDirection = null
-let timerColor:color = null
-let str:string = null
-let thePlayer: Sprite = null
-let isTimerOn = false
-let bouldersFallen = false
+let life = 0
 let collapseCracks = false
-let isHookshotActive = false
-let targetList = null
-let distances = null
-let shortestDistance = null
-let closestTarget = null
-let targetSprite:Sprite = null
-hasHookshot = true
+let bouldersFallen = false
+let isTimerOn = false
+let thePlayer: Sprite = null
+let str:string = null
+let timerColor:color = null
+let enteringFrom: CollisionDirection = null
+let secondsLeft = 0
+let minutesLeft = 0
 let totalSeconds:number
 function addTimerEvent(seconds:number, event:() => void){
     control.onEvent(TIMER_EVENT_ID, seconds, event)
@@ -802,13 +847,14 @@ let cover = sprites.create(assets.image`starting_screen`, SpriteKind.ScreenCover
 controller.pauseUntilAnyButtonIsPressed()
 cover.destroy()
 let TIMER_EVENT_ID = 1008
-let life = 7
+life = 7
 jumpHeight = 25
 GRAVITY = 400
 timerRunning = true
 canMove = true
 collapseCracks = false
 minutesLeft = 4
+heartsFound = []
 thePlayer = sprites.create(assets.image`player`, SpriteKind.Player)
 controller.moveSprite(thePlayer, 75, 0)
 thePlayer.ay = GRAVITY
@@ -991,7 +1037,8 @@ game.onUpdateInterval(1000, function () {
     }
 })
 game.onUpdateInterval(1500, function () {
-    if(!isHookshotActive){
+    let isHookshotActive = 0
+    if (!(isHookshotActive)) {
         for (let value322 of tiles.getTilesByType(assets.tile`myTile14`)) {
             arrow = sprites.create(assets.image`arrow_right`, SpriteKind.Projectile)
             tiles.placeOnTile(arrow, value322)

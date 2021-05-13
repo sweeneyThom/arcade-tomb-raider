@@ -1,3 +1,5 @@
+let targetSprite:Sprite = null
+let isHookshotActive = false
 function getAllSprites() {
     const allSprites: Sprite[] = [];
 

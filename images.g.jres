@@ -39,11 +39,6 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "myTile"
     },
-    "image11": {
-        "data": "hwQHAAcAAAAAmQAAkM0JANnMnACQzMwJycycAJDMCQAAmQAA",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "heart_full"
-    },
     "image10": {
         "data": "hwQHAAcAAAAAmQAAkJ0JAJnJmQCQnMkJyZnMCZCcmQAAmQAA",
         "mimeType": "image/x-mkcd-f4",
@@ -118,6 +113,11 @@
         "data": "hwQIAAgAAABZeYeVWImYlYlVVZmZmZiYmZmZmJmIiYmJmZiZiJmZmQ==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "myTile25"
+    },
+    "image11": {
+        "data": "hwQHAAcAAAAAmQAAkM0JANnMnACQzMwJycycAJDMCQAAmQAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "heart_full"
     },
     "F;h%jB^zl[P~{gIKNUH%": {
         "namespace": "myImages",
